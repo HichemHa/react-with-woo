@@ -1,3 +1,21 @@
 export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_PRODUCT_FAIL = "GET_PRODUCT_FAIL";
 export const GET_PRODUCT_SUCCESS = "GET_PRODUCT_SUCCESS";
+
+// card
+
+export const ADD_TO_CARD = "ADD_TO_CARD";
+export const GET_CARD = "GET_CARD";
+export const DELETE_FROM_CARD = "DELETE_FROM_CARD";
+export const UPDATE_CARD = "UPDATE_CARD";
+export const QUANT_INCRIMENT = "QUANT_INCRIMENT";
+export const QUANT_DECRIMENT = "QUANT_DECRIMENT";
+
+export const PALCE_ORDER = "PALCE_ORDER";
+export const PALCE_ORDER_SUCCESS = "PALCE_ORDER_SUCCESS";
+export const PALCE_ORDER_FAIL = "PALCE_ORDER_FAIL";
+
+
+export const GET_ORDER = "GET_ORDER";
+export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
+export const GET_ORDER_FAIL = "GET_ORDER_FAIL";

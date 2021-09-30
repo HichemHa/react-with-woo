@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from './Header';
 import HomePage from './HomePage';
+import { Route, Switch } from 'react-router-dom';
+import PageArticle from './components/PageArticle';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductList())
   }, [dispatch])
-
-  
 
   const product = useSelector((state) => state.productReducer.product) || [];
   console.log('my all prod',product);
@@ -20,11 +20,15 @@ function App() {
       <header className="App-header">
        <Header  />
       </header>
-
-        <main>
+       <Switch>
+          <Route exact path="/" render={() => <main>
           {product.length === 0? <p>wait</p>:  <HomePage product={product}/> }
-         
-        </main>
+        </main> }/> 
+        <Route  exact path="/article/:_id" component={PageArticle} />
+      </Switch>
+     
+
+        
     </div>
   );
 }

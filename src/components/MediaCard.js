@@ -5,14 +5,17 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-export default function MediaCard({data}) {
+export default function MediaCard({data,key}) {
   console.log('data',data.description);
   let xx = data.description.replace('<p>','');
   xx = xx.replace('</p>','');
   return (
+    <Link to={`/article/${data.id}`}>
     
     <Card sx={{ maxWidth: 345 }}>
+    {console.log(key)}
       <CardMedia
         component="img"
         height="240"
@@ -33,5 +36,6 @@ export default function MediaCard({data}) {
       </CardActions>
       <p>Prix : {data.price}</p>
     </Card>
+    </Link>
   );
 }
