@@ -1,11 +1,12 @@
 import {GET_PRODUCT,GET_PRODUCT_FAIL,GET_PRODUCT_SUCCESS} from "../constants/actionsTypes";
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
-import axios from "axios";
+// import axios from "axios";
 
 
 
 
 export const getProductList = () => async (dispatch) => {
+    dispatch({ type: GET_PRODUCT});
   const api = new WooCommerceRestApi({
     url: "https://www.getting-web.website/wordpress",
     consumerKey: "ck_45558eb86f41f49e57724b8144389f50d5c8b285",
