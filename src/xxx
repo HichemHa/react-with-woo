@@ -1,0 +1,23 @@
+ const card = useSelector((state) => state.cardReducer.card) || [];
+  
+if (!localStorage.getItem('card') ){
+    const hello = [];
+    localStorage.setItem("card",JSON.stringify(hello));
+  }
+  useEffect(() => {
+     if (card.length > 0){
+
+       localStorage.setItem("card", JSON.stringify(card));
+     }
+  }, [card])
+ 
+  const cardlocaldata = JSON.parse(localStorage.getItem('card') || []);
+
+  useEffect(() => {
+    if(cardlocaldata.length > 0){
+
+      dispatch(addToCard(cardlocaldata))
+    }
+  }, [cardlocaldata,dispatch])
+
+ 

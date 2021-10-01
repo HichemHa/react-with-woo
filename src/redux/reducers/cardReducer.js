@@ -3,7 +3,7 @@ import {
     ADD_TO_CARD, DELETE_FROM_CARD, GET_CARD, UPDATE_CARD,
     QUANT_INCRIMENT, QUANT_DECRIMENT, PALCE_ORDER,GET_ORDER_FAIL,
     GET_ORDER,
-    GET_ORDER_SUCCESS
+    GET_ORDER_SUCCESS,PALCE_ORDER_SUCCESS,PALCE_ORDER_FAIL
 } from '../constants/actionsTypes';
 
 const initialCard = {
@@ -12,7 +12,8 @@ const initialCard = {
     somme: 0,
     allcard: [],
     loading: false,
-    errors: null
+    errors: null,
+    response:""
 }
 
 const cardReducer = (state = initialCard, { type, payload }) => {
@@ -29,7 +30,7 @@ const cardReducer = (state = initialCard, { type, payload }) => {
         case DELETE_FROM_CARD:
             return {
                 ...state,
-                card: state.card.filter((el, i) => i != payload)
+                card: state.card.filter((el, i) => el.id !== payload) 
             }
         case UPDATE_CARD:
             return {
@@ -49,7 +50,7 @@ const cardReducer = (state = initialCard, { type, payload }) => {
         case PALCE_ORDER:
             return {
                 ...state,
-
+                loading:true
             }
         case GET_ORDER:
             return {
@@ -57,6 +58,7 @@ const cardReducer = (state = initialCard, { type, payload }) => {
                 loading: true
             }
         case GET_ORDER_SUCCESS:
+          
             return {
                 ...state,
                 allcard: payload,
@@ -67,6 +69,16 @@ const cardReducer = (state = initialCard, { type, payload }) => {
                 loading: false,
                 errors: payload
             }
+              case PALCE_ORDER_SUCCESS :
+                  return{
+                        loading: false,
+                        response : payload.data
+                  }
+              case PALCE_ORDER_FAIL :
+                  return{
+                        loading: false,
+                        errors : payload
+                  }
 
         default:
             return state;

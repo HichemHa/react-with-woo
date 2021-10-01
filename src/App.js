@@ -8,15 +8,30 @@ import { Route, Switch } from "react-router-dom";
 import PageArticle from "./components/PageArticle";
 import Confime from "./components/Confime";
 import Loader from "react-loader-spinner";
+import { addToCard } from "./redux/actions";
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProductList());
   }, [dispatch]);
 
   const product = useSelector((state) => state.productReducer.product) || [];
-  console.log("my all prod", product);
+  console.log("prod",product)
+  const cards = useSelector((state) => state.cardReducer.card) || [];
+  
+
+
+  useEffect(() => {
+     dispatch(addToCard(JSON.parse(localStorage.getItem("card"))));
+  }, [dispatch])
+
+  useEffect(() => {
+    localStorage.setItem("card", JSON.stringify(cards));
+  }, [cards])
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -29,14 +44,13 @@ function App() {
           render={() => (
             <main>
               {product.length === 0 ? (
-                 <Loader
-        type="TailSpin"
-        color="#00BFFF"
-        height={100}
-        width={100}
-        style={{position:"absolute",top:"30%",right:"50%"}}
-       
-      />
+                <Loader
+                  type="TailSpin"
+                  color="#00BFFF"
+                  height={100}
+                  width={100}
+                  style={{ position: "absolute", top: "30%", right: "50%" }}
+                />
               ) : (
                 <HomePage product={product} />
               )}

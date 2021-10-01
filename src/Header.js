@@ -38,7 +38,7 @@ function Header() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link href="#/confirme">Confirme Commande </Nav.Link>
             <Nav.Link href="#action2">Link</Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
@@ -56,7 +56,7 @@ function Header() {
           </Nav>
           <>
             <Button variant="primary" onClick={handleShow} style={{marginRight:"20px"}}>
-              Panier  <FaShoppingCart/>
+              Panier  <FaShoppingCart/> {cards.length}
             </Button>
 
             <Modal show={show} onHide={handleClose} animation={false} >
@@ -104,6 +104,7 @@ function Header() {
             <Link to={"/commanede"}>
               <Button variant="outline-success">Search</Button>{" "}
             </Link>
+            
           </Form>
         </Navbar.Collapse>
       </Container>

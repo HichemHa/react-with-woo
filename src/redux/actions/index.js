@@ -55,16 +55,16 @@ export const quantDecriment = (payload) => (dispatch) => {
 
 export const placeOrder = (order) => async (dispatch) => {
   await dispatch({ type: PALCE_ORDER });
-  const api = new WooCommerceRestApi({
+
+  const apiz = new WooCommerceRestApi({
     url: "https://www.getting-web.website/wordpress",
     consumerKey: "ck_45558eb86f41f49e57724b8144389f50d5c8b285",
     consumerSecret: "cs_6dd24bb5d69e4abca08260d0b2dfd6833e9c0c98",
-    version: "wc/v3"});
-
-  try {
+    version: "wc/v3",});
+    try {
+    const orderResult = await  apiz.post("orders",order);
     
-    const orderResult = await  api.post("products");
-    dispatch({ type: PALCE_ORDER_SUCCESS, payload: orderResult.data })
+    dispatch({ type: PALCE_ORDER_SUCCESS, payload: orderResult })
   } catch (error) {
     dispatch({ type: PALCE_ORDER_FAIL, payload: error.response.data });
 
